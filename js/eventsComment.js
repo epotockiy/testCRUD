@@ -43,9 +43,11 @@ var editComment = function () {
 }
 
 var saveComment = function() {
-  var div = this.closest('.media').firstChild;
+  var _this = this;
+  var div = _this.closest('.media').firstChild;
   var p = document.createElement('p');
   p.innerHTML = div.lastChild.value;
   div.removeChild(div.lastChild);
   div.appendChild(p);
+  _this.closest('.media').childNodes[1].removeChild(_this);
 }
