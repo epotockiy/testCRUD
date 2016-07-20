@@ -27,15 +27,14 @@ app.controller('PostCommentCtrl', ['$scope', '$http', '$location', '$log', funct
             $log.info('err', err);
         });
 
-
-
-    $scope.deleteComment = function() {
-        
-    	var $element = angular.element($0).scope();
-
-    	$log.info($element)
-
-
+    $scope.newComment = function() {
+        $scope.comments.push({ name: $scope.commentname, email: $scope.commentemail, body: $scope.commentbody });
+        $scope.commentname = '';
+        $scope.commentemail = '';
+        $scope.commentbody = '';
     };
-
+    $scope.deleteComment = function(item) {
+        var index = $scope.comments.indexOf(item)
+        $scope.comments.splice(index, 1);
+    };
 }]);

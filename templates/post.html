@@ -14,9 +14,14 @@
             <hr>
             <div class="well">
                 <h4>Leave a Comment:</h4>
-                <form role="form">
+                <form role="form" ng-submit="newComment()">
                     <div class="form-group">
-                        <textarea class="form-control" rows="3"></textarea>
+                        <label>Your Email: </label>
+                        <input type="email" class="form-control" ng-model="commentemail" placeholder="example@example.com"></input>
+                        <label>Comment Theme: </label>
+                        <input type="text" class="form-control" ng-model="commentname" placeholder="About"></input>
+                        <label>Comment: </label>
+                        <textarea ng-model="commentbody" class="form-control" rows="3" placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis dignissimos debitis, nemo voluptatem quam distinctio omnis tempora labore animi possimus! Aspernatur rerum, nam voluptatibus asperiores accusamus, veritatis omnis voluptatem consequatur!"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -27,14 +32,25 @@
                     <a class="pull-left" href="http://blackrockdigital.github.io/startbootstrap-blog-post/#">
                         <img class="media-object" src="" alt="">
                     </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">{{comment.name}}
-                        <small>{{comment.email}}</small></h4>
+                    <div class="media-body" ng-hide="editing">
+                        <h4 ng-hide="editableName" class="media-heading">{{comment.name}}</h4>
+                        <p>{{comment.email}}</p>
                         <p>{{comment.body}}</p>
+                        <button type="" class="btn btn-primary" ng-click="editing = true">Edit</button>
+                        <button type="" class="btn btn-danger" ng-click="deleteComment(comment)">Delete</button>
                     </div>
-                    <div>
-                        <button type="" class="btn btn-primary">Edit</button>
-                        <button type="" class="btn btn-delete" ng-click="deleteComment()">Delete</button>
+                    <div class="well" ng-show="editing">
+                        <h4>Edit a Comment:</h4>
+                        <form ng-submit="editing = false">
+                            <label>Comment Theme:</label>
+                            <input type="text" class="form-control" ng-model="comment.name" placeholder="Name" ng-required/>
+                            <label>Your Email:</label>
+                            <input type="email" class="form-control" ng-model="comment.email" placeholder="Email" ng-required/>
+                            <label>Comment:</label>
+                            <textarea ng-model="comment.body" class="form-control" rows="3"></textarea>
+                            <br/>
+                            <button class="btn btn-success" type="submit">Save</button>
+                        </form>
                     </div>
                 </div>
             </div>

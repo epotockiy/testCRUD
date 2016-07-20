@@ -40,7 +40,10 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http) {
                 console.log("status" + err);
             });
     };
-
+$scope.deletePost = function(item) {
+        var index = $scope.headlines.indexOf(item)
+        $scope.headlines.splice(index, 1);
+    };
 
 
 
