@@ -18,7 +18,9 @@ var config = {
     bowerDir: './vendor/bower_components',
     sassPath: './resource',
     jQueryDir: './vendor/bower_components/jquery',
-    ngDir: './vendor/bower_components/angular/'
+    ngDir: './vendor/bower_components/angular/',
+    ngRouteDir: './vendor/bower_components/angular-route/',
+    ngUiRouteDir: './vendor/bower_components/angular-ui-router/'
 };
 
 gulp.task('browserSync', function() {
@@ -61,7 +63,9 @@ gulp.task('uglifyPlugins', function() {
     return gulp.src([
             config.jQueryDir + '/dist/jquery-2.1.4.js',
             config.bootstrapDir + '/assets/javascripts/bootstrap.js',
-            config.ngDir + '/angular.js'
+            config.ngDir + '/angular.js',
+            config.ngRouteDir + '/angular-route.js',
+            config.ngUiRouteDir + '/release/angular-ui-router.js'
         ])
         .pipe(concat('vendor.js'))
         .pipe(rename({

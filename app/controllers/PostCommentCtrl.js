@@ -1,0 +1,41 @@
+app.controller('PostCommentCtrl', ['$scope', '$http', '$location', '$log', function($scope, $http, $location, $log) {
+
+    $scope.root = 'http://jsonplaceholder.typicode.com';
+
+    $scope.thisAuthorId = $location.path().match(/[^/]*$/);
+
+    $http.get($scope.root + '/posts/' + $scope.thisAuthorId)
+        .success(function(res) {
+            $scope.authorPost = res;
+        })
+        .error(function(err) {
+            $log.info('error', err);
+        });
+
+    $http.get($scope.root + '/comments')
+        .success(function(res) {
+            $scope.commentsTemp = res;
+            $scope.comments = [];
+            angular.forEach($scope.commentsTemp, function(value, key) {
+                if (value.postId == $scope.thisAuthorId) {
+                    $scope.comments.push(value);
+                }
+            });
+            $log.log($scope.comments);
+        })
+        .error(function(err) {
+            $log.info('err', err);
+        });
+
+
+
+    $scope.deleteComment = function() {
+        
+    	var $element = angular.element($0).scope();
+
+    	$log.info($element)
+
+
+    };
+
+}]);

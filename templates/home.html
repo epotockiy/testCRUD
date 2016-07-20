@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8" when-scrolled="loadMore()">
+            <h1 class="page-header">Posts</h1>
+            <div ng-repeat="post in headlines">
+                <h2><a ng-href="#/posts/{{post.id}}" >{{post.title}}</a></h2>
+                <p class="lead">by
+                    <a ng-href="#/users/{{post.userId}}" ">{{post.userId}}</a></p>
+                <p><span class="glyphicon glyphicon-time "></span> Posted on August 28, 2013 at 10:00 PM</p>
+                    
+                <p>{{post.body}}</p>
+                <a class="btn btn-info " ng-href="#/posts/{{post.id}} ">Read More <span class="glyphicon glyphicon-chevron-right "></span></a>
+                    <hr>
+            </div>
+             <button type="button " class="btn btn-primary " ng-click="lol() " ng-if="more ">Load  More</button>
+        </div>
+                <div class="col-md-4 " >
+                    <div class="well ">
+                        <h4>Blog Search</h4>
+                        <div class="input-group ">
+                            <input type="text " class="form-control ">
+                            <span class="input-group-btn ">
+                            <button class="btn btn-default " type="button ">
+                                <span class="glyphicon glyphicon-search "></span>
+                            </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+    </div>
+            <hr>
+

@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <h1>{{authorPost.title}}</h1>
+            <p class="lead">
+                by <a href="http://blackrockdigital.github.io/startbootstrap-blog-post/#">{{authorPost.userId}}</a>
+            </p>
+            <hr>
+            <p><span class="glyphicon glyphicon-time"></span> Posted on August 24, 2013 at 9:00 PM</p>
+            <hr>
+            <img class="img-responsive" src="" alt="">
+            <hr>
+            <p class="lead">{{authorPost.body}}</p>
+            <hr>
+            <div class="well">
+                <h4>Leave a Comment:</h4>
+                <form role="form">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <hr>
+            <div class="comments">
+                <div class="media" ng-repeat="comment in comments">
+                    <a class="pull-left" href="http://blackrockdigital.github.io/startbootstrap-blog-post/#">
+                        <img class="media-object" src="" alt="">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{comment.name}}
+                        <small>{{comment.email}}</small></h4>
+                        <p>{{comment.body}}</p>
+                    </div>
+                    <div>
+                        <button type="" class="btn btn-primary">Edit</button>
+                        <button type="" class="btn btn-delete" ng-click="deleteComment()">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>
