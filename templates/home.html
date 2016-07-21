@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8" when-scrolled="loadMore()">
+            <h1 class="page-header">Posts</h1>
+            <div ng-repeat="post in headlines | filter:searchText:strict">
+                <div ng-hide="editing">
+                    <h2><a ng-href="#/posts/{{post.id}}" >{{post.title}}</a></h2>
+                    <p class="lead">by
+                        <a ng-href="#/users/{{post.userId}}" >{{post.userId}}</a></p>
+                    <p><span class="glyphicon glyphicon-time "></span> Posted on August 28, 2013 at 10:00 PM</p>
+                        
+                    <p>{{post.body}}</p>
+                    <a class="btn btn-info " ng-href="#/posts/{{post.id}} ">Read More <span class="glyphicon glyphicon-chevron-right "></span></a>
+                    <button type="" class="btn btn-primary" ng-click="editing = true">Edit</button>
+                    <button type="" class="btn btn-danger" ng-click="deletePost(post)">Delete</button>
+                        <hr>
+                </div>
+                <div class="well" ng-show="editing">
+                    <h4>Edit a Post:</h4>
+                    <form ng-submit="editing = false">
+                        <label>Post title:</label>
+                        <input ng-model="post.title" class="form-control"></input>
+                        <label>Post body:</label>
+                        <textarea ng-model="post.body" class="form-control" rows="3"></textarea>
+                        <br/>
+                        <button class="btn btn-success">Save</button>
+                    </form>
+                </div>
+            </div>
+
+            <button type="button " class="btn btn-primary " ng-click="loadMore() " ng-if="more ">Load  More</button>
+        </div>
+        <div class="col-md-4 " >
+            <div class="well ">
+                <h4>Blog Search by Title</h4>
+                <div class="input-group ">
+                    <input type="text " class="form-control " ng-model="searchText.title">
+                    <span class="input-group-btn ">
+                    <button class="btn btn-default " type="search" method="GET">
+                        <span class="glyphicon glyphicon-search "></span>
+                    </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>
+

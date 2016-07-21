@@ -1,0 +1,27 @@
+{
+  "name": "ngTestCRUD",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Task 4",
+  "author": "Evgeniy Zhuk <zhuk.eugene@hiqo-solutions.com>",
+  "dependecies": {
+    "gulp": "latest"
+  },
+  "devDependencies": {
+    "browser-sync": "latest",
+    "gulp": "latest",
+    "gulp-bower": "latest",
+    "gulp-clean-css": "^2.0.11",
+    "gulp-concat": "latest",
+    "gulp-cssmin": "latest",
+    "gulp-minify-css": "latest",
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "latest",
+    "gulp-sass": "latest",
+    "gulp-uglify": "latest"
+  },
+  "dependencies": {
+    "async-each-series": "^1.1.0",
+    "gulp-install": "^0.6.0"
+  }
+}
