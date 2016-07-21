@@ -14,9 +14,6 @@ $(function($) {
         });
     });
 
-    
-
-
     $('.btn[data-type=loadMore]').on('click', function() {
         $numPreLoad += 10;
         var $limit = 10;
@@ -44,24 +41,17 @@ $(function($) {
 
     function createPost(dataId, userId, title, body) {
 
-        $container = $('.col-md-8');
-
-        $post = $('<div class="post"/>');
-
-        $title = $("<h2 class='title'><a href='#/posts/" + dataId + "'>" + title + "</a></h2>");
-
-        $author = $('<p class="lead">' + 'author id:' + '<a href="#/posts">' + userId + '</a></p>');
-
-        $content = $('<p>').append(body);
-
-        $span = $('<span/>').addClass('glyphicon glyphicon-chevron-right');
-
-        $aButton = $('<a href="#/posts/' + dataId + '"/>')
-            .addClass('btn btn-primary')
-            .append("Read more")
-            .append($span);
-
-        $hr = $('<hr/>');
+        var $container = $('.col-md-8'),
+            $post = $('<div class="post"/>'),
+            $title = $("<h2 class='title'><a href='#/posts/" + dataId + "'>" + title + "</a></h2>"),
+            $author = $('<p class="lead">' + 'author id:' + '<a href="#/posts">' + userId + '</a></p>'),
+            $content = $('<p>').append(body),
+            $span = $('<span/>').addClass('glyphicon glyphicon-chevron-right'),
+            $aButton = $('<a href="#/posts/' + dataId + '"/>')
+              .addClass('btn btn-primary')
+              .append("Read more")
+              .append($span),
+            $hr = $('<hr/>');
 
         $post.append($title);
         $post.append($author);

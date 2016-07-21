@@ -22,28 +22,23 @@ $.get($root + '/posts/' + $currentPostId)
         console.log('error', err);
     });
 
-
-
-
 $.get($root + '/comments', function(data) {
     handler(data);
 });
 
-function createOneElement(name, email, body) {
+function createOneElement(_name, _email, _body) {
 
 
-    $email = $('<small/>').append(email);
-    $title = $('<h4/>').addClass('media-heading').append(name);
-    $commentContent = $('<p/>').append(body);
-    $divMedia = $('<div/>').addClass('comment');
+    var email = $('<small/>').append(_email),
+        title = $('<h4/>').addClass('media-heading').append(_name),
+        commentContent = $('<p/>').append(_body),
+        divMedia = $('<div/>').addClass('comment'),
+        divMediaBody = $('<div/>').addClass('media-body')
+          .append(title)
+          .append(email)
+          .append(commentContent);
 
-    $divMediaBody = $('<div/>').addClass('media-body')
-        .append($title)
-        .append($email)
-
-    $divMediaBody.append($commentContent);
-
-    $buttonEdit = $('<input type="button" value="Edit"/>')
+    var buttonEdit = $('<input type="button" value="Edit"/>')
         .addClass('btn btn-primary editable')
         .on('click', function() {
           var body = $(this).parent().children('.media-body'),
@@ -52,15 +47,15 @@ function createOneElement(name, email, body) {
           editableText.remove();
 
           if(!body.children().is('.editForm')){
-            $editForm = $('<textarea rows="5"/>')
+            var editForm = $('<textarea rows="5"/>')
                 .val(editableText.text())
                 .addClass('form-control');
-            body.append($('<div/>').addClass('editForm').append($editForm));
+            body.append($('<div/>').addClass('editForm').append(editForm));
           }
           body.parent().children('.save-btn').css('display', 'block');
         });
 
-    $buttonDelete = $('<input type="button" value="Delete"/>')
+    var buttonDelete = $('<input type="button" value="Delete"/>')
         .addClass('btn btn-danger')
         .attr('id', 'delete')
         .css('margin-left', '5px')
@@ -70,7 +65,7 @@ function createOneElement(name, email, body) {
                 .siblings('hr').remove();
         });
 
-    $buttonSave = $('<input type="button" value="Save" class="save-btn btn btn-success">')
+    var buttonSave = $('<input type="button" value="Save" class="save-btn btn btn-success">')
         .css({
           'margin': '7px 0 10px 0',
           'display': 'none'
@@ -84,12 +79,12 @@ function createOneElement(name, email, body) {
           $(this).css('display', 'none');
         });
 
-    $divMedia.append($divMediaBody);
-    $divMedia.append($buttonSave);
-    $divMedia.append($buttonEdit);
-    $divMedia.append($buttonDelete);
+    divMedia.append(divMediaBody);
+    divMedia.append(buttonSave);
+    divMedia.append(buttonEdit);
+    divMedia.append(buttonDelete);
 
-    $(".comments").append($divMedia.append('<hr/>'));
+    $(".comments").append(divMedia.append('<hr/>'));
 
 }
 
