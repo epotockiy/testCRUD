@@ -1,18 +1,11 @@
 <div class="container" id="view">
     <div class="row">
         <div class="col-lg-8">
-            <div class="post-author"></div>
+            <div class="post-author">
+            </div>
             <hr>
             <div class="well">
                 <h4>Leave a Comment:</h4>
-                <!-- <form role="form">
-                    <div class="form-group">
-                        <textarea id="title" class="form-control" rows="3" placeholder="title"></textarea>
-                        <textarea id="email" class="form-control" rows="1" placeholder="email"></textarea>
-                        <textarea id="comment" class="form-control" rows="1" placeholder="comment"></textarea>
-                    </div>
-                    <button type="button" class="btn btn-primary" id="btn-submit">Submit</button>
-                </form> -->
                 <form data-toggle="validator" role="form" id="commentForm">
                     <div class="form-group">
                         <label for="inputEmail" class="control-label">Email</label>
@@ -28,13 +21,30 @@
                         <textarea id="comment" class="form-control" rows="5" required></textarea>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary" onclick="saved()">Submit</button>
+                        <button type="submit" class="btn btn-primary" id="submit">Submit</button>
                     </div>
                 </form>
             </div>
-            <div class="comments">
+            <div class="comments" id="comments-container">
             </div>
             <hr>
         </div>
+
     </div>
     <script type="text/javascript" src="../app/messages.js"></script>
+    <script id="commentTmpl" type="text/x-jquery-tmpl">
+      <div class="comment">
+        <div class="media-body">
+          <h4><a href="#">${name}</a></h4>
+          <small>by ${email}</small>
+          <p>
+            ${body}
+          </p>
+        </div>
+        <button type="button" class="save-btn btn btn-success hide save" >Save</button>
+        <button type="button" class="btn btn-primary editable edit">Edit</button>
+        <button type="button" class="btn btn-danger delete">Delete</button>
+        <hr>
+      </div>
+
+    </script>

@@ -10,7 +10,7 @@ $(function($) {
     $.get($root + '/posts').success(function(res) {
         $headlines = res.slice(0, 10);
         $.each($headlines, function(key, value) {
-            createPost(value.id, value.userId, value.title, value.body);
+            createPost(value);
         });
     });
 
@@ -30,7 +30,7 @@ $(function($) {
                         return false;
                     }
                     $headlines.push(value);
-                    createPost(value.id, value.userId, value.title, value.body);
+                    createPost(value);
                     i++;
                 });
             })
@@ -39,27 +39,10 @@ $(function($) {
             });
     });
 
-    function createPost(dataId, userId, title, body) {
-
-        var $container = $('.col-md-8'),
-            $post = $('<div class="post"/>'),
-            $title = $("<h2 class='title'><a href='#/posts/" + dataId + "'>" + title + "</a></h2>"),
-            $author = $('<p class="lead">' + 'author id:' + '<a href="#/posts">' + userId + '</a></p>'),
-            $content = $('<p>').append(body),
-            $span = $('<span/>').addClass('glyphicon glyphicon-chevron-right'),
-            $aButton = $('<a href="#/posts/' + dataId + '"/>')
-              .addClass('btn btn-primary')
-              .append("Read more")
-              .append($span),
-            $hr = $('<hr/>');
-
-        $post.append($title);
-        $post.append($author);
-        $post.append($content);
-        $post.append($aButton);
-        $post.append($hr);
-
-        $container.append($post);
+    function createPost(_dataItems) {
+        var $container = $('.col-md-8');
+        $('#postTmpl').tmpl(_dataItems).appendTo($container);
+        $('#readMoreTmpl').tmpl(_dataItems).appendTo($container);
     }
 
     /* function handler(data) {

@@ -51,7 +51,17 @@
     </footer>
     <script type="text/javascript" src="assets/js/vendor.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/path.js/0.8.4/path.min.js"></script>
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
     <script type="text/javascript" src="app/router.js"></script>
+    <script id="postTmpl" type="text/x-jquery-tmpl">
+      <h2><a href="#/posts/${id}">${title}</a></h2>
+      <p>by ${userId}</p>
+      <p class="lead">${body}</p>
+    </script>
+    <script id="readMoreTmpl" type="text/x-jquery-tmpl">
+      <a href="#/posts/${id}" class="btn btn-primary" >Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+      <hr>
+    </script>
 </body>
 
 </html>
