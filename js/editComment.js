@@ -16,7 +16,7 @@
 
         var btnSave = document.createElement('a');
         btnSave.innerHTML = 'save';
-        btnSave.className = 'btn btn-primary';
+        btnSave.className = 'btn btn-success';
         boolEdit = 0;
         btnSave.onclick = saveComment.saveComment;
 

@@ -1,6 +1,4 @@
-
 var eventsComment = require('./eventsComment');
-
 var saveComment = require('./saveComment');
 var editComment = require('./editComment');
 
@@ -54,13 +52,13 @@ exports.viewCommentController = function(currentId){
 
     var btnEdit = document.createElement('a');
     btnEdit.innerHTML = 'edit';
-    btnEdit.className = 'btn btn-primary';
+    btnEdit.className = 'btn btn-info';
     window.boolEdit = 1;
     btnEdit.onclick = editComment.editComment;
 
     var btnDelete = document.createElement('a');
     btnDelete.innerHTML = 'delete';
-    btnDelete.className = 'btn btn-primary';
+    btnDelete.className = 'btn btn-danger';
     btnDelete.onclick = deleteComment.deleteComment;
 
     var btnGroup = document.createElement('div');
