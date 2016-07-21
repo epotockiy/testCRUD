@@ -1,22 +1,25 @@
 {
-    "name": "ngTestCRUD",
-    "version": "0.0.1",
-    "private": true,
-    "description": "Task 4",
-    "author": "Evgeniy Zhuk <zhuk.eugene@hiqo-solutions.com>",
-    "dependecies": {
-        "gulp": "latest"
-    },
-    "devDependencies": {
-        "browser-sync": "latest",
-        "gulp": "latest",
-        "gulp-sass": "latest",
-        "gulp-bower": "latest",
-        "gulp-notify": "^2.2.0",
-        "gulp-rename": "latest",
-        "gulp-minify-css": "latest",
-        "gulp-uglify": "latest",
-        "gulp-concat": "latest",
-        "gulp-cssmin": "latest"
-    }
+  "name": "ngTestCRUD",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Task 4",
+  "author": "Evgeniy Zhuk <zhuk.eugene@hiqo-solutions.com>",
+  "dependecies": {
+    "gulp": "latest"
+  },
+  "devDependencies": {
+    "browser-sync": "latest",
+    "gulp": "latest",
+    "gulp-sass": "latest",
+    "gulp-bower": "latest",
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "latest",
+    "gulp-minify-css": "latest",
+    "gulp-uglify": "latest",
+    "gulp-concat": "latest",
+    "gulp-cssmin": "latest"
+  },
+  "dependencies": {
+    "gulp-install": "^0.6.0"
+  }
 }

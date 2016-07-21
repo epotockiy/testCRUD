@@ -21,14 +21,14 @@
                     </div>
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <input type="title" class="form-control" placeholder="Title" id="inputTitle" data-error="Empty title">
+                        <input type="title" class="form-control" placeholder="Title" id="inputTitle" data-error="Empty title" required>
                     </div>
                     <div class="form-group">
                         <label for="comment">Comment:</label>
-                        <textarea id="comment" class="form-control" rows="5" ></textarea>
+                        <textarea id="comment" class="form-control" rows="5" required></textarea>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" onclick="saved()">Submit</button>
                     </div>
                 </form>
             </div>

@@ -11,7 +11,7 @@ $.get($root + '/posts/' + $currentPostId)
 
         var $title = $('<h2/>').append($authorPost.title);
 
-        var $postBy = $('<p/>').append($authorPost.userId);
+        var $postBy = $('<p/>').append('by ' + $authorPost.userId);
 
         var $text = $('<p class="lead">').append($authorPost.body);
 
@@ -42,14 +42,25 @@ function createOneElement(name, email, body) {
 
     $divMediaBody.append($commentContent);
 
-    $buttonEdit = $('<input type="button" value="Edit"/>').addClass('btn btn-primary').addClass('editable')
+    $buttonEdit = $('<input type="button" value="Edit"/>')
+        .addClass('btn btn-primary editable')
+        .on('click', function() {
+          var body = $(this).parent().children('.media-body'),
+              editableText = body.children('p');
+          editableText.remove();
+          $editForm = $('<textarea rows="5"/>')
+              .val(editableText.text())
+              .addClass('form-control');
+          body.append($('<div/>').append($editForm));
+        });
     $buttonDelete = $('<input type="button" value="Delete"/>')
         .addClass('btn btn-danger')
         .attr('id', 'delete')
         .css('margin-left', '5px')
         .on('click', function() {
-            $(this).parent().remove();
-            $(this).parent().siblings('hr').remove();
+            $(this).parent()
+                .remove()
+                .siblings('hr').remove();
         });
 
     $divMedia = $('<div/>').addClass('comment');
@@ -62,12 +73,14 @@ function createOneElement(name, email, body) {
 }
 
 function saved() {
-    var title = $("#title").val();
-    var email = $("#email").val();
-    var comment = $("#comment").val();
-    if ((title != "") && (email != "") && (comment != "")) {
-
-        createOneElement(title, email, comment);
+    var title = $("#inputTitle");
+    var email = $("#inputEmail");
+    var comment = $("#comment");
+    if ((title.val() != "") && (email.val() != "") && (comment.val() != "")) {
+        createOneElement(title.val(), email.val(), comment.val());
+        title.val("");
+        email.val("");
+        comment.val("");
     } else {
         alert("проверьте введеные вами данные!");
     }
