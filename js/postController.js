@@ -1,4 +1,5 @@
 var viewCommentController = require('./viewCommentController');
+
 var url = root + '/posts' + window.location.search,
   parentPost = document.getElementById('post'),
   px = new XMLHttpRequest();
