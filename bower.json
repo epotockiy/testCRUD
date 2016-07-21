@@ -1,0 +1,14 @@
+{
+    "name": "Angular Test CRUD",
+    "version": "0.0.1",
+    "authors": [
+        "Evgeniy Zhuk <zhuk.eugene@hiqo-solutions.com>"
+    ],
+    "private": true,
+    "license": "free",
+    "dependencies": {
+        "bootstrap-sass": "latest",
+        "bootstrap-validator": "latest",
+        "chroma": "latest"
+    }
+}
