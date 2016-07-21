@@ -41,7 +41,7 @@
                     </div>
                     <div class="well" ng-show="editing">
                         <h4>Edit a Comment:</h4>
-                        <form ng-submit="editing = false">
+                        <form ng-submit="editing = save(comment)">
                             <label>Comment Theme:</label>
                             <input type="text" class="form-control" ng-model="comment.name" placeholder="Name" ng-required/>
                             <label>Your Email:</label>

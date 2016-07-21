@@ -37,4 +37,23 @@ app.controller('PostCommentCtrl', ['$scope', '$http', '$location', '$log', funct
         var index = $scope.comments.indexOf(item)
         $scope.comments.splice(index, 1);
     };
+
+    $scope.save = function(item){
+        var index = $scope.comments.indexOf(item);
+        var masEnter = [$scope.comments[index].name, $scope.comments[index].email, $scope.comments[index].body];
+        var bool = true;
+        masEnter.forEach(function(item){
+
+         if(item == ''){
+            bool = false;
+          }
+        });
+        if(!bool){
+         alert("Please fill data");
+         return true;
+        }
+        else{
+            return false;
+        }
+    }
 }]);
