@@ -35,6 +35,7 @@ function createOneElement(name, email, body) {
     $email = $('<small/>').append(email);
     $title = $('<h4/>').addClass('media-heading').append(name);
     $commentContent = $('<p/>').append(body);
+    $divMedia = $('<div/>').addClass('comment');
 
     $divMediaBody = $('<div/>').addClass('media-body')
         .append($title)
@@ -47,12 +48,18 @@ function createOneElement(name, email, body) {
         .on('click', function() {
           var body = $(this).parent().children('.media-body'),
               editableText = body.children('p');
+
           editableText.remove();
-          $editForm = $('<textarea rows="5"/>')
-              .val(editableText.text())
-              .addClass('form-control');
-          body.append($('<div/>').append($editForm));
+
+          if(!body.children().is('.editForm')){
+            $editForm = $('<textarea rows="5"/>')
+                .val(editableText.text())
+                .addClass('form-control');
+            body.append($('<div/>').addClass('editForm').append($editForm));
+          }
+          body.parent().children('.save-btn').css('display', 'block');
         });
+
     $buttonDelete = $('<input type="button" value="Delete"/>')
         .addClass('btn btn-danger')
         .attr('id', 'delete')
@@ -63,8 +70,22 @@ function createOneElement(name, email, body) {
                 .siblings('hr').remove();
         });
 
-    $divMedia = $('<div/>').addClass('comment');
+    $buttonSave = $('<input type="button" value="Save" class="save-btn btn btn-success">')
+        .css({
+          'margin': '7px 0 10px 0',
+          'display': 'none'
+        })
+        .on('click', function() {
+          var body = $(this).parent().children('.media-body'),
+              editableText = body.children('.editForm');
+          editableText.remove();
+          $text = $('<p/>').append(editableText.children().val());
+          body.append($text);
+          $(this).css('display', 'none');
+        });
+
     $divMedia.append($divMediaBody);
+    $divMedia.append($buttonSave);
     $divMedia.append($buttonEdit);
     $divMedia.append($buttonDelete);
 
@@ -99,8 +120,6 @@ function saved() {
     })
 
     // var $l = Validator().runValidator($('#commentForm'));
-
-
 
 
 function handler(data) {
