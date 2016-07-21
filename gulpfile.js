@@ -9,7 +9,6 @@ const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
 const cssmin = require('gulp-cssmin');
 //const merge = require('merge-stream');,
-
 var config = {
     bootstrapDir: './vendor/bower_components/bootstrap-sass',
     publicDir: './assets',
@@ -20,7 +19,6 @@ var config = {
     ngRouteDir: './vendor/bower_components/angular-route/',
     ngUiRouteDir: './vendor/bower_components/angular-ui-router/'
 };
-
 gulp.task('browserSync', function() {
     browserSync.init({
         server: {
