@@ -64,13 +64,21 @@
                     Blog posts
                 </h1>
 
-                <div  id="posts-container">
+                <div id="postContainer">
                   <!-- Blog Posts by controller.js -->
 
                 </div>
-
-
-
+                <script id="personTpl" type="text/template">
+        <h2><a>{{title}}</a></h2>
+        <p class="lead">by <a> {{userId}}</a></p>
+          <p><span class="glyphicon glyphicon-time "></span> Posted on August 28, 2013 at 10:00 PM</p>
+        <p>{{body}}</p>
+        <a class="btn btn-info" href="post.html?id={{id}}">Read More <span class="glyphicon glyphicon-chevron-right "></span></a>
+        <a class="btn btn-danger">Delete</span></a>
+        <hr>
+    </script>
+                    
+                    
                 <!-- Pager -->
                 <ul class="pager">
                     <li class="previous">
@@ -162,6 +170,7 @@
     <!-- /.container -->
 
     <!-- jQuery -->
+    <script type="text/javascript" src="home_files/mustache.js"></script>
     <script src="./home_files/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->

@@ -67,9 +67,16 @@
             <!-- Blog Post Content Column -->
             <div class="col-lg-8">
 
-              <div id="post">
+              <div id="showpost"></div>
                 <!-- Blog Post -->
-              </div>
+                <script id="postTpl" type="text/template">
+        <h2><a>{{title}}</a></h2>
+        <p class="lead">by <a> {{userId}}</a></p>
+          <p><span class="glyphicon glyphicon-time "></span> Posted on August 28, 2013 at 10:00 PM</p>
+        <p>{{body}}</p>
+        <hr>
+    </script>
+              
 
 
                 <!-- Blog Comments -->
@@ -94,10 +101,15 @@
                 <!-- Posted Comments -->
 
                 <!-- Comment -->
-                <div id="comment-context">
+                <div id="commentBox">
 
                 </div>
-
+                <script id="commentTpl" type="text/template">
+        <h4>{{name}}</h4>
+        <p>{{email}</p>
+        <p>{{body}}</p>
+        <hr>
+    </script>
                 <!-- <div class="media">
                     <a class="pull-left" href="#">
                         <img class="media-object" src="./home_files/64x64" alt="">
@@ -201,10 +213,11 @@
 
     <!-- jQuery -->
     <script src="./home_files/jquery.js"></script>
+    <script type="text/javascript" src="home_files/mustache.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="./home_files/bootstrap.min.js"></script>
-    <script src="./js/controller.js"></script>
+    <script src="./js/postcontroller.js"></script>
     <script src="./js/static/bundle.js"></script>
 <!--    <script src="./js/test.js"></script>
     <script src="./js/test_1.js"></script> -->

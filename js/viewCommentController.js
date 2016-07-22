@@ -9,7 +9,7 @@ exports.viewCommentController = function(currentId){
     commentsView(currentId); 
     function commentsView(_id){
     var cx = new XMLHttpRequest();
-    cx.open("GET",  root + '/posts/' + _id + '/comments', true);
+    cx.open("GET",  'http://jsonplaceholder.typicode.com' + '/posts/' + _id + '/comments', true);
     cx.onload = function (){
       var comments = JSON.parse(cx.responseText);
       comments.forEach(showComments);
