@@ -1,16 +1,18 @@
 <div class="row">
 	
 	<div style="background: yellow;" data-bind="text: lol"></div>
-
-	<ul data-bind="foreach: posts">
+	<!-- <div >
+		<ul data-bind="foreach: temp">
 		<li data-bind="text:title"></li>
 	</ul>
+	</div> -->
+	
 
-    <div class="col-md-8" data-bind="with:posts">
+    <div class="col-md-8" data-bind="with:temp">
         <h1 class="page-header">Latest Posts</h1>
         <div id="posts">
-            <div data-bind="foreach: posts">
-                <h2 data-bind="click: goToPost">
+            <div data-bind="foreach:temp">
+                <h2 >
                           <a href="#" data-bind="text: title"></a>
                         </h2>
                 <p class="lead">by<a href="index.php" data-bind="text: userId"></a></p>
@@ -19,8 +21,8 @@
                 <img class="img-responsive" src="http://placehold.it/900x300" alt="">
                 <hr>
                 <p data-bind="text: body"></p>
-                <a class="btn btn-primary" data-bind="click: goToPost">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-                <a class="btn btn-primary" data-bind="click: deletePost">Delete Post</a>
+                <a class="btn btn-primary" >Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-primary" >Delete Post</a>
                 <hr>
             </div>
         </div>

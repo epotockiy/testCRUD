@@ -92,31 +92,103 @@
 
 */
 
-function PostsViewModel(){
+/*function PostsViewModel() {
     var self = this;
-    self.posts = ko.observableArray([]);
+    // self.posts = ko.observableArray([]);
+
+
+
+    self.lolita = "lolita";
+    self.lol = "lol";
+
     $.get("http://jsonplaceholder.typicode.com/posts", function(data) {
-        console.log(data)
-            self.posts(data);
-            /*self.posts = ko.mapping.toJS([]);
-            console.log(self.posts);*/
-            console.log(self.posts())
+        console.log(data);
+        self.posts(data);
+        self.posts = ko.mapping.toJS([]);
+        console.log(self.posts);
+        console.log(self.posts());
     });
-    console.log(self.posts)
-    self.loadposts = function(){
+    console.log(self.posts());
+    self.loadposts = function() {
         console.log('lol');
     };
 }
+*/
 
 
-
-$(function() {
+/*$(function() {
     pager.Href.hash = '#/';
     // pager.extendWithPage(ViewModel.prototype);
-     // ko.applyBindings(new ViewModel());
-    pager.extendWithPage(PostsViewModel.prototype)
+    // ko.applyBindings(new ViewModel());
+    pager.extendWithPage(PostsViewModel.prototype);
     ko.applyBindings(new PostsViewModel());
     pager.start();
-});
+});*/
 
 // ko.applyBindings(ViewModel());
+
+
+
+import 'babel-polyfill';
+
+import ko from 'knockout';
+import 'ko-component-router';
+
+ko.components.register('zhuk',{
+    viewModel: class Zhuk{
+        constructor(){
+            this.a = ko.observable("My name is zhuk");
+        }
+    },
+    template: '<div data-bind="text:a"></div>'
+})
+
+ko.components.register('app',{
+    
+    template: '<ko-component-router params="routes: routes,hashbang: false"></ko-component-router>',
+    viewModel: class App{
+        constructor(){
+            this.routes = {
+                '/': 'home',
+                '/user/:id': 'user'
+            }
+        }
+    }
+})
+
+ko.components.register('home',{
+    
+    viewModel: class Post{
+        constructor(){
+            var self = this;
+            self.rootUri = "http://jsonplaceholder.typicode.com";
+            self.posts = ko.observableArray([]);
+            self.text_ = ko.observable("Some text");
+        }
+        getData(){
+            $.getJSON(self.Uri + '/posts', function(data) {
+                   return self.posts(data);
+            });
+             // self.posts;
+        }
+    },
+    template: { require: '../text!templates/home.html' }
+})
+
+ko.components.register('user',{
+    viewModel: class User{
+        constructor(ctx){
+
+        }
+    },
+     template: '<!-- ctx is also available as $router in the binding context -->'
+});
+
+class ViewModel{
+    constructor(){
+        this.a = ko.observable(0);
+    }
+}
+
+ko.applyBindings(new ViewModel());
+

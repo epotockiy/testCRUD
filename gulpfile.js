@@ -10,6 +10,11 @@ const minify = require('gulp-minify-css');
 const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
 const cssmin = require('gulp-cssmin');
+const webpack = require('webpack-stream');
+
+const $ = require('gulp-load-plugins')({
+    camelize: true
+})
 
 var config = {
     bootstrapDir: './vendor/bower_components/bootstrap-sass',
@@ -17,9 +22,10 @@ var config = {
     publicDir: './assets',
     bowerDir: './vendor/bower_components',
     sassPath: './resource',
+    requireJsDir: './node_modules/requirejs',
     jQueryDir: './vendor/bower_components/jquery',
     knockoutDir: './vendor/bower_components/knockout',
-    koMappingDir: './vendor/bower_components/bower-knockout-mapping/',
+    koMappingDir: './vendor/bower_components/bower-knockout-mapping',
     pagerJsDir: './node_modules/pagerjs'
 };
 
@@ -59,14 +65,32 @@ gulp.task('fonts', function() {
         .pipe(gulp.dest(config.publicDir + '/fonts'));
 });
 
+
+gulp.task("webpack", function() {
+    return gulp.src("./app/script.js")
+        .pipe(webpack({
+            entry:{
+                app: './app/script.js'
+            },
+            output: {
+                filename: 'app.bundle.js'
+            }
+            }))
+        .pipe(gulp.dest('./'));
+});
+
+
+
+
+
+
+
 gulp.task('uglifyPlugins', function() {
     return gulp.src([
             config.jQueryDir + '/dist/jquery-2.1.4.js',
             config.bootstrapDir + '/assets/javascripts/bootstrap.js',
             config.boostrapValidatorDir + '/dist/validator.js',
-            config.knockoutDir + '/dist/knockout.js',
-            config.koMappingDir + '/dist/knockout.mapping.js',
-            config.pagerJsDir + '/pager.js'
+            config.knockoutDir + '/dist/knockout.js'
         ])
         .pipe(concat('vendor.js'))
         .pipe(rename({
@@ -83,4 +107,4 @@ gulp.task('watch', ['browserSync', 'sass'], function() {
 
 gulp.task('build', ['uglifyPlugins']);
 
-gulp.task('default', ['bower', 'uglifyPlugins', 'fonts', 'watch']);
+gulp.task('default', ['bower', 'uglifyPlugins', 'fonts', 'watch','webpack']);
