@@ -32,7 +32,7 @@ app.controller('PostCommentCtrl', ['$scope', '$http', '$location', '$log', funct
         // if($scope.commentName.$valid && $scope.commentEmail.$valid && $scope.commentBody.$valid) {
         $http.post($scope.root + '/posts/' + $scope.thisAuthorId + '/comments', {name: $scope.commentName, email: $scope.commentEmail, body: $scope.commentBody})
           .success(function(res) {
-            $scope.comments.push({ name: $scope.commentName, email: $scope.commentEmail, body: $scope.commentBody });
+            $scope.comments.push(res);
             $scope.commentName = '';
             $scope.commentEmail = '';
             $scope.commentBody = '';
@@ -57,7 +57,15 @@ app.controller('PostCommentCtrl', ['$scope', '$http', '$location', '$log', funct
     };
 
     $scope.save = function(item){
-        var index = $scope.comments.indexOf(item);
-        var masEnter = [$scope.comments[index].name, $scope.comments[index].email, $scope.comments[index].body];
+      // var index = $scope.comments.indexOf(item);
+      // var masEnter = [$scope.comments[index].name, $scope.comments[index].email, $scope.comments[index].body];
+      $http.put($scope.root + '/comments/' + item.id, item)
+        .success(function(res) {
+
+        })
+        .error(function(err) {
+          $log.info('err', err);
+        })
+
     }
 }]);
