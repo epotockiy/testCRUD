@@ -12,48 +12,52 @@ app.controller('PostCommentCtrl', ['$scope', '$http', '$location', '$log', funct
             $log.info('error', err);
         });
 
-    $http.get($scope.root + '/comments')
+    $http.get($scope.root + '/posts/' + $scope.thisAuthorId + '/comments')
+    // HACK: it's better load only 5 posts instead of loading all 100 posts with selection that 5 from them
         .success(function(res) {
             $scope.commentsTemp = res;
             $scope.comments = [];
             angular.forEach($scope.commentsTemp, function(value, key) {
-                if (value.postId == $scope.thisAuthorId) {
+                // if (value.postId == $scope.thisAuthorId) {
                     $scope.comments.push(value);
-                }
+                // }
             });
-            $log.log($scope.comments);
+            // $log.log($scope.comments);
         })
         .error(function(err) {
             $log.info('err', err);
         });
 
     $scope.addNewComment = function() {
-        $scope.comments.push({ name: $scope.commentName, email: $scope.commentEmail, body: $scope.commentBody });
-        $scope.commentName = '';
-        $scope.commentEmail = '';
-        $scope.commentBody = '';
+        // if($scope.commentName.$valid && $scope.commentEmail.$valid && $scope.commentBody.$valid) {
+        $http.post($scope.root + '/posts/' + $scope.thisAuthorId + '/comments', {name: $scope.commentName, email: $scope.commentEmail, body: $scope.commentBody})
+          .success(function(res) {
+            $scope.comments.push({ name: $scope.commentName, email: $scope.commentEmail, body: $scope.commentBody });
+            $scope.commentName = '';
+            $scope.commentEmail = '';
+            $scope.commentBody = '';
+            $log.log(res.id);
+          })
+          .error(function(err) {
+            $log.info('err', err);
+          });
+        // }
     };
+
     $scope.deleteComment = function(item) {
-        var index = $scope.comments.indexOf(item)
-        $scope.comments.splice(index, 1);
+        $http.delete($scope.root + '/comments/' + item.id)
+          .success(function(res) {
+            // $log.log(res);
+            var index = $scope.comments.indexOf(item)
+            $scope.comments.splice(index, 1);
+          })
+          .error(function(err) {
+              $log.info('error', err);
+          });
     };
 
     $scope.save = function(item){
         var index = $scope.comments.indexOf(item);
         var masEnter = [$scope.comments[index].name, $scope.comments[index].email, $scope.comments[index].body];
-        var bool = true;
-        masEnter.forEach(function(item){
-
-         if(item == ''){
-            bool = false;
-          }
-        });
-        if(!bool){
-         alert("Please fill data");
-         return true;
-        }
-        else{
-            return false;
-        }
     }
 }]);

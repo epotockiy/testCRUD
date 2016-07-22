@@ -9,6 +9,7 @@
     "dependencies": {
         "bootstrap-sass": "latest",
         "chroma": "latest",
-        "angular": "latest"
+        "angular": "latest",
+		    "angular-route": "latest"
     }
 }
