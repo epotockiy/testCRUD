@@ -1,4 +1,4 @@
-'use strict';
+
 
 const browserSync = require('browser-sync').create();
 const gulp = require('gulp');
@@ -60,7 +60,7 @@ gulp.task('fonts', function() {
 
 gulp.task('uglifyPlugins', function() {
     return gulp.src([
-            config.jQueryDir + '/dist/jquery-2.1.4.js',
+            config.jQueryDir + '/dist/jquery.js',
             config.bootstrapDir + '/assets/javascripts/bootstrap.js',
             config.boostrapValidatorDir + '/dist/validator.js',
             config.jQRouterDir + '/jquery.router.js'

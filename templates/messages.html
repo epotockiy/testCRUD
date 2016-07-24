@@ -31,20 +31,21 @@
         </div>
 
     </div>
-    <script type="text/javascript" src="../app/messages.js"></script>
     <script id="commentTmpl" type="text/x-jquery-tmpl">
-      <div class="comment">
+      <div class="comment" id="${id}">
         <div class="media-body">
           <h4><a href="#">${name}</a></h4>
           <small>by ${email}</small>
-          <p>
+          <p class="commentbody">
             ${body}
           </p>
         </div>
         <button type="button" class="save-btn btn btn-success hide save" >Save</button>
-        <button type="button" class="btn btn-primary editable edit">Edit</button>
-        <button type="button" class="btn btn-danger delete">Delete</button>
+        <button type="button" class="cancel-btn btn btn-info hide cancel" >Cancel</button>
+        <button type="button" class="btn btn-primary editable edit" id='${id}'>Edit</button>
+        <button type="button" class="btn btn-danger delete" id="${id}">Delete</button>
         <hr>
-      </div>
+    </div>
 
     </script>
+    <script type="text/javascript" src="../app/messages.js"></script>

@@ -9,6 +9,7 @@
     "dependencies": {
         "bootstrap-sass": "latest",
         "bootstrap-validator": "latest",
-        "chroma": "latest"
+        "chroma": "latest",
+        "jquery": "2.1.4"
     }
 }
