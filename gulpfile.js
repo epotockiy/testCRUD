@@ -10,8 +10,8 @@ const minify = require('gulp-minify-css');
 const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
 const cssmin = require('gulp-cssmin');
-const webpack = require('webpack-stream');
-
+// const webpack = require('webpack-stream');
+const webpack = require('gulp-webpack');
 const $ = require('gulp-load-plugins')({
     camelize: true
 })
@@ -66,42 +66,29 @@ gulp.task('fonts', function() {
 });
 
 
-gulp.task("webpack", function() {
-    return gulp.src("./app/script.js")
-        .pipe(webpack({
-            entry:{
-                app: './app/script.js'
-            },
-            output: {
-                filename: 'app.bundle.js'
-            }
-            }))
-        .pipe(gulp.dest('./'));
+gulp.task('webpack', function() {
+  return gulp.src('./app/script.js')
+    .pipe(webpack())
+    .pipe(gulp.dest('./dist/'));
 });
-
-
-
-
-
 
 
 gulp.task('uglifyPlugins', function() {
     return gulp.src([
             config.jQueryDir + '/dist/jquery-2.1.4.js',
             config.bootstrapDir + '/assets/javascripts/bootstrap.js',
-            config.boostrapValidatorDir + '/dist/validator.js',
-            config.knockoutDir + '/dist/knockout.js'
+            config.boostrapValidatorDir + '/dist/validator.js'
         ])
         .pipe(concat('vendor.js'))
         .pipe(rename({
             suffix: ".min",
             extname: ".js"
         }))
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(gulp.dest(config.publicDir + '/js'))
 })
 
-gulp.task('watch', ['browserSync', 'sass'], function() {
+gulp.task('watch', ['browserSync', 'sass', 'webpack'], function() {
     gulp.watch(config.sassPath + '/**/*.scss', ['sass']);
 })
 

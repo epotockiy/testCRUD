@@ -1,7 +1,11 @@
- const webpack = require('webpack');
+var webpack = require('webpack');
 
  module.exports = {
-     entry: './app/script.js',
+     entry: './app/mainScript.js',
+     resolve: {
+        modulesDirectories: ["./node_modules/"
+        ]
+     },
      output: {
          path: './',
          filename: 'app.bundle.js',
@@ -12,15 +16,5 @@
              exclude: /node_modules/,
              loader: 'babel-loader',
          }]
-     },
-     plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false,
-            },
-            output: {
-                comments: false,
-            },
-        }),
-    ]
+     }
  };

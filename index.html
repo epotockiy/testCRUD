@@ -7,12 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Knockout CRUD service</title>
     <link rel="stylesheet" type="text/css" href="assets/css/main.min.css">
+    <script type="text/javascript" src="vendor/bower_components/knockout/dist/knockout.js"></script>
+    <script type="text/javascript" src="./node_modules/ko-component-router/dist/ko-component-router.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js"></script>
+    <script type="text/javascript" src="./vendor/bower_components/jquery/dist/jquery.js"></script>
+
 </head>
 
 <body>
-    <header>
+
+    <!-- Navigation -->
+    <app>
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span>
@@ -20,51 +28,47 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#/" >Home</a><!--data-bind="click: loadposts"-->
+                    <a class="navbar-brand" href="#" data-bind="click: loadposts">Home</a>
                 </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li>
+                            <a href="#">About</a>
+                        </li>
+                        <li>
+                            <a href="#">Services</a>
+                        </li>
+                        <li>
+                            <a href="#">Contact</a>
+                        </li>
                     </ul>
                 </div>
+                <!-- /.navbar-collapse -->
             </div>
+            <!-- /.container -->
         </nav>
-    </header>
 
-    <zhuk></zhuk>
-    <app></app>
-    
-    <main>
+        <!-- Page Content -->
+      
+        <div class="container">
 
-    <div class="container" data-bind="page:{id:'home',role:'start', source:'templates/home.html'}"></div>
-
-
-
-
-        <!-- <div class="container">
             <div class="row">
-                <div class="col-md-8" data-bind="with:posts" data-bind="page:{id: 'start', title:'First Page'}">
-                    <ul>
-                        <li><a href="#!/start/1">1</a></li>
-                        <li><a href="#/lol">2</a></li>
-                        <li><a href="#!/start/3">3</a></li>
-                        <li><a href="#!/start/4">4</a></li>
-                        <li><a href="#!/start/5">5</a></li>
-                    </ul>
-        
-                    <div data-bind="page: {id:'lol', title:'lolTitle', source:'templates/home.html'}">
-                        
-                    </div>
-        
-        
-                    <h1 class="page-header">Latest Posts</h1>
+
+                <!-- Blog Entries Column -->
+                <div class="col-md-8" data-bind="with:posts">
+
+                    <h1 class="page-header">
+                        Page Heading
+                        <small>Secondary Text</small>
+                    </h1>
+
+                    <!-- First Blog Post -->
                     <div id="posts">
                         <div data-bind="foreach: posts">
                             <h2 data-bind="click: goToPost">
-                          <a href="#" data-bind="text: title"></a>
-                        </h2>
+                              <a href="#" data-bind="text: title"></a>
+                            </h2>
                             <p class="lead">
                                 by
                                 <a href="index.php" data-bind="text: userId"></a>
@@ -79,27 +83,24 @@
                             <hr>
                         </div>
                     </div>
-                    <button type="button " class="btn btn-primary " ng-click="lol() " ng-if="more ">Load  More</button>
+
+                    <!-- Pager -->
+                    <ul class="pager">
+                        <li class="previous">
+                            <a href="#">&larr; Older</a>
+                        </li>
+                        <li class="next">
+                            <a href="#">Newer &rarr;</a>
+                        </li>
+                    </ul>
+
                 </div>
-                 <div class="col-md-4">
-                    Blog Search Well
-                    <div class="well">
-                        <h4>Blog Search</h4>
-                        <div class="input-group">
-                            <input type="text" class="form-control">
-                            <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                            </span>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="col-md-8" data-bind="with:cpost">
                     <div data-bind="foreach: cpost">
                         <h2>
-                    <a href="#" data-bind="text: title"></a>
-                </h2>
+                        <a href="#" data-bind="text: title"></a>
+                    </h2>
                         <p class="lead">
                             by
                             <a href="index.php" data-bind="text: userId"></a>
@@ -112,9 +113,10 @@
                         <a class="btn btn-primary" data-bind="click:loadposts">Back</a>
                     </div>
                     <hr>
+
                     <div class="well" data-bind="with:comments">
                         <h4>Leave a Comment:</h4>
-                        <form role="form">
+                        <form role="form" >
                             <div class="form-group">
                                 <input class="form-control" type="text" placeholder="your name" data-bind='value:nameToAdd, valueUpdate:"afterkeydown", visible: flag'>
                                 <input class="form-control" type="text" placeholder="youremail@gmail.com" data-bind='value:emailToAdd, valueUpdate:"afterkeydown", visible: flag'>
@@ -124,42 +126,79 @@
                             <button type="submit" data-bind="enable: isValidForm(), visible:saveFlag, click:saveComment" class="btn btn-primary">Save</button>
                         </form>
                     </div>
-                    <hr>
-                    <div data-bind="with:comments">
-                        <div data-bind="foreach: comments">
-                            <div class="media">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object" src="http://placehold.it/64x64" alt="">
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading" data-bind="text: name">
-                                </h4>
-                                    <small>BY <span data-bind="text: email"></span></small>
-                                    <p data-bind="text: body"></p>
-                                </div>
-                            </div>
-                            <div class="btn-group">
-                                <button type="submit" class="btn btn-primary" data-bind="click:editComment">Edit</button>
-                                <a class="btn btn-primary" data-bind="click: removeComment">Delete</a>
-                            </div>
-                            <hr>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr> -->
-    </main>
-    <footer>
-        <div class="row">
-            <div class="col-lg-12">
-                <p>Copyright &copy; ko CRUD service 2016</p>
-            </div>
-        </div>
-    </footer>
 
-    </div>
+                    <hr>
+
+                    <div data-bind="with:comments">
+                      <div data-bind="foreach: comments">
+                          <div class="media">
+                              <a class="pull-left" href="#">
+                                  <img class="media-object" src="http://placehold.it/64x64" alt="">
+                              </a>
+                              <div class="media-body">
+                                  <h4 class="media-heading" data-bind="text: name">
+                                    </h4>
+                                  <small>BY <span data-bind="text: email"></span></small>
+                                  <p data-bind="text: body"></p>
+                              </div>
+                          </div>
+                          <div class="btn-group">
+                              <button type="submit" class="btn btn-primary" data-bind="click:editComment">Edit</button>
+                              <a class="btn btn-primary" data-bind="click: removeComment">Delete</a>
+                          </div>
+                          <hr>
+                      </div>
+                    </div>
+
+                </div>
+
+
+
+                <!-- Blog Sidebar Widgets Column -->
+                <div class="col-md-4">
+
+                    <!-- Blog Search Well -->
+                    <div class="well">
+                        <h4>Blog Search</h4>
+                        <div class="input-group">
+                            <input type="text" class="form-control">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                            </span>
+                        </div>
+                        <!-- /.input-group -->
+                    </div>
+
+                  
+
+                </div>
+
+            </div>
+            <!-- /.row -->
+
+            <hr>
+
+            <!-- Footer -->
+            <footer>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>Copyright &copy; Your Website 2014</p>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </footer>
+
+        </div>
+        <template id="home"></template>
+        <template id="user"></template>
+    </app>
+    
+    <script src="vendor/bower_components/component-router/build/component-router.js"></script>
+    <script type="text/javascript" src="./app/mainScript.js"></script>
     <script type="text/javascript" src="assets/js/vendor.min.js"></script>
-    <script type="text/javascript" src="assets/js/ko-component-router.min.js"></script>
     <!-- <script type="text/javascript" src="app/knockout-amd-helpers-0.6.1.js"></script>
      <script data-main="scripts/config" type="text/javascript" src="app/require.js"></script>
     <script type="text/javascript" src="app/require.js"></script>
@@ -171,7 +210,10 @@
     <script type="text/javascript" src="app/knockout-router.js"></script>
     <script type="text/javascript" src="app/require-text-2.0.10.js"></script>
     <script type="text/javascript" src="app/require-2.1.10.min.js"></script> -->
-    <script type="text/javascript" src="app.bundle.js"></script>
+    <!--<script type="text/javascript" src="./app/script.js"></script>-->
+<!--<script type="text/javascript" src="./app.bundle.js"></script> 
+ -->
+ <!--    <script type="text/javascript" src="./dist/af956956ec4df6aee306.js"></script> -->
 </body>
 
 </html>
