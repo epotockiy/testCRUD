@@ -22,8 +22,10 @@ var config = {
     publicDir: './assets',
     bowerDir: './vendor/bower_components',
     sassPath: './resource',
-    requireJsDir: './node_modules/requirejs',
     jQueryDir: './vendor/bower_components/jquery',
+    knockoutDir: './vendor/bower_components/knockout',
+    koMappingDir: './vendor/bower_components/bower-knockout-mapping',
+    pagerJsDir: './node_modules/pagerjs'
 };
 
 gulp.task('browserSync', function() {
@@ -85,10 +87,4 @@ gulp.task('uglifyPlugins', function() {
         .pipe(gulp.dest(config.publicDir + '/js'))
 })
 
-gulp.task('watch', ['browserSync', 'sass', 'webpack'], function() {
-    gulp.watch(config.sassPath + '/**/*.scss', ['sass']);
-})
-
-gulp.task('build', ['uglifyPlugins']);
-
-gulp.task('default', ['bower', 'uglifyPlugins', 'fonts', 'watch','webpack']);
+gulp.task('default', ['bower', 'uglifyPlugins', 'fonts', 'browserSync']);
