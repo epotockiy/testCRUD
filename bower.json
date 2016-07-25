@@ -1,0 +1,15 @@
+{
+    "name": "Knockout Test CRUD",
+    "version": "0.0.1",
+    "authors": [
+        "Evgeniy Zhuk <zhuk.eugene@hiqo-solutions.com>"
+    ],
+    "private": true,
+    "license": "free",
+    "dependencies": {
+        "bootstrap-sass": "latest",
+        "bootstrap-validator": "latest",
+        "jquery": "2.1.4",
+        "mustache": "latest"
+    }
+}
