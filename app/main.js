@@ -1,26 +1,6 @@
-require.config({
-  baseUrl: '/knockout-router/examples',
-  paths: {
-    'knockout': 'lib/knockout-3.1.0.min',
-    'knockout-amd-helpers': 'lib/knockout-amd-helpers-0.6.1',
-    'knockout-history': '../dist/knockout-history',
-    'knockout-router': '../dist/knockout-router',
+requirejs.config({
+	paths: {"ko-component-router": "../node_modules/ko-component-router/dist/ko-component-router", "knockout": "../vendor/bower_components/knockout/dist/knockout"}
+})
+require(["mainScript", "knockout", "ko-component-router"], function(util) {
 
-    'text': 'lib/require-text-2.0.10'
-  },
-  shim: {
-    'knockout-amd-helpers': {
-      deps: ['knockout']
-    },
-    'knockout-history': {
-      deps: ['knockout']
-    },
-    'knockout-router': {
-      deps: ['knockout', 'knockout-history', 'knockout-amd-helpers']
-    }
-  }
-});
-
-define(['js/app'], function(app) {
-  app.run();
 });

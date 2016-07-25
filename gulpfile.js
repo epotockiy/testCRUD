@@ -24,9 +24,6 @@ var config = {
     sassPath: './resource',
     requireJsDir: './node_modules/requirejs',
     jQueryDir: './vendor/bower_components/jquery',
-    knockoutDir: './vendor/bower_components/knockout',
-    koMappingDir: './vendor/bower_components/bower-knockout-mapping',
-    pagerJsDir: './node_modules/pagerjs'
 };
 
 gulp.task('browserSync', function() {

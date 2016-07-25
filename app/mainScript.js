@@ -25,7 +25,6 @@ function viewModel() {
         self.goToPost = function(post) {
             self.posts(null);
             self.choseid = post.id;
-            console.log(choseid);
             $.get("http://jsonplaceholder.typicode.com/posts", {
                 id: choseid
             }, self.cpost);
@@ -46,7 +45,7 @@ function viewModel() {
                     email: self.emailToAdd(),
                     body: self.textToAdd()
                 };
-                self.comments.push(self.newComment);
+                self.comments.unshift(self.newComment);
                 self.textToAdd("");
                 self.emailToAdd("");
                 self.nameToAdd("");
@@ -55,8 +54,8 @@ function viewModel() {
 
         self.editComment = function(comment) {
                     self.textToAdd(comment.body);
-            self.nameToAdd(comment.name);
-            self.emailToAdd(comment.email);
+                    self.nameToAdd(comment.name);
+                    self.emailToAdd(comment.email);
                     self.flag(false);
                     self.saveFlag(true);
         }
@@ -69,12 +68,16 @@ function viewModel() {
                 * идея: отслеживать id поста и показывать кнопку save только для него
               */
                 self.saveComment = function(comment) {
-                    console.log(comment.body);
-                    console.log(self.textToAdd());
+                    self.comments.remove(comment[choseid]);
+                    self.newComment = {
+                        name: self.nameToAdd(),
+                        email: self.emailToAdd(),
+                        body: self.textToAdd()
+                    };
+                    self.comments.unshift(self.newComment);
                     // comment = {
                     //  body: self.textToAdd()
                     // }
-                    comment.body = self.textToAdd();
                     self.flag(true);
                     self.saveFlag(false);
                     self.textToAdd("");

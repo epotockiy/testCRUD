@@ -15,10 +15,8 @@
 </head>
 
 <body>
-
-    <!-- Navigation -->
-    <app>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        
+     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -47,60 +45,29 @@
                 <!-- /.navbar-collapse -->
             </div>
             <!-- /.container -->
-        </nav>
-
+    </nav>
+    <!-- Navigation -->
+    <app>
         <!-- Page Content -->
-      
+
         <div class="container">
+            
+           <div class="row">
 
-            <div class="row">
+            <!-- Blog Entries Column -->
+            <div class="col-md-8" data-bind="with:posts">
 
-                <!-- Blog Entries Column -->
-                <div class="col-md-8" data-bind="with:posts">
+                <h1 class="page-header">
+                    Page Heading
+                    <small>Secondary Text</small>
+                </h1>
 
-                    <h1 class="page-header">
-                        Page Heading
-                        <small>Secondary Text</small>
-                    </h1>
-
-                    <!-- First Blog Post -->
-                    <div id="posts">
-                        <div data-bind="foreach: posts">
-                            <h2 data-bind="click: goToPost">
-                              <a href="#" data-bind="text: title"></a>
-                            </h2>
-                            <p class="lead">
-                                by
-                                <a href="index.php" data-bind="text: userId"></a>
-                            </p>
-                            <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
-                            <hr>
-                            <img class="img-responsive" src="http://placehold.it/900x300" alt="">
-                            <hr>
-                            <p data-bind="text: body"></p>
-                            <a class="btn btn-primary" data-bind="click: goToPost">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-                            <a class="btn btn-primary" data-bind="click: deletePost">Delete Post</a>
-                            <hr>
-                        </div>
-                    </div>
-
-                    <!-- Pager -->
-                    <ul class="pager">
-                        <li class="previous">
-                            <a href="#">&larr; Older</a>
-                        </li>
-                        <li class="next">
-                            <a href="#">Newer &rarr;</a>
-                        </li>
-                    </ul>
-
-                </div>
-
-                <div class="col-md-8" data-bind="with:cpost">
-                    <div data-bind="foreach: cpost">
-                        <h2>
-                        <a href="#" data-bind="text: title"></a>
-                    </h2>
+                <!-- First Blog Post -->
+                <div id="posts">
+                    <div data-bind="foreach: posts">
+                        <h2 data-bind="click: goToPost">
+                          <a href="#" data-bind="text: title"></a>
+                        </h2>
                         <p class="lead">
                             by
                             <a href="index.php" data-bind="text: userId"></a>
@@ -110,78 +77,90 @@
                         <img class="img-responsive" src="http://placehold.it/900x300" alt="">
                         <hr>
                         <p data-bind="text: body"></p>
-                        <a class="btn btn-primary" data-bind="click:loadposts">Back</a>
+                        <a class="btn btn-primary" data-bind="click: goToPost">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                        <a class="btn btn-primary" data-bind="click: deletePost">Delete Post</a>
+                        <hr>
                     </div>
-                    <hr>
-
-                    <div class="well" data-bind="with:comments">
-                        <h4>Leave a Comment:</h4>
-                        <form role="form" >
-                            <div class="form-group">
-                                <input class="form-control" type="text" placeholder="your name" data-bind='value:nameToAdd, valueUpdate:"afterkeydown", visible: flag'>
-                                <input class="form-control" type="text" placeholder="youremail@gmail.com" data-bind='value:emailToAdd, valueUpdate:"afterkeydown", visible: flag'>
-                                <textarea class="form-control" rows="3" data-bind='value:textToAdd, valueUpdate:"afterkeydown"'></textarea>
-                            </div>
-                            <button type="submit" data-bind="enable: isValidForm(), visible:flag, click:addComment" class="btn btn-primary">Submit</button>
-                            <button type="submit" data-bind="enable: isValidForm(), visible:saveFlag, click:saveComment" class="btn btn-primary">Save</button>
-                        </form>
-                    </div>
-
-                    <hr>
-
-                    <div data-bind="with:comments">
-                      <div data-bind="foreach: comments">
-                          <div class="media">
-                              <a class="pull-left" href="#">
-                                  <img class="media-object" src="http://placehold.it/64x64" alt="">
-                              </a>
-                              <div class="media-body">
-                                  <h4 class="media-heading" data-bind="text: name">
-                                    </h4>
-                                  <small>BY <span data-bind="text: email"></span></small>
-                                  <p data-bind="text: body"></p>
-                              </div>
-                          </div>
-                          <div class="btn-group">
-                              <button type="submit" class="btn btn-primary" data-bind="click:editComment">Edit</button>
-                              <a class="btn btn-primary" data-bind="click: removeComment">Delete</a>
-                          </div>
-                          <hr>
-                      </div>
-                    </div>
-
                 </div>
 
+                <!-- Pager -->
+                <ul class="pager">
+                    <li class="previous">
+                        <a href="#">&larr; Older</a>
+                    </li>
+                    <li class="next">
+                        <a href="#">Newer &rarr;</a>
+                    </li>
+                </ul>
 
+            </div>
 
-                <!-- Blog Sidebar Widgets Column -->
-                <div class="col-md-4">
+            <div class="col-md-8" data-bind="with:cpost">
+                <div data-bind="foreach: cpost">
+                    <h2>
+                    <a href="#" data-bind="text: title"></a>
+                </h2>
+                    <p class="lead">
+                        by
+                        <a href="index.php" data-bind="text: userId"></a>
+                    </p>
+                    <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
+                    <hr>
+                    <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+                    <hr>
+                    <p data-bind="text: body"></p>
+                    <a class="btn btn-primary" data-bind="click:loadposts">Back</a>
+                </div>
+                <hr>
 
-                    <!-- Blog Search Well -->
-                    <div class="well">
-                        <h4>Blog Search</h4>
-                        <div class="input-group">
-                            <input type="text" class="form-control">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                            </span>
+                <div  class="well" data-bind="with:comments" >
+                    <h4>Leave a Comment:</h4>
+                    <form role="form" >
+                        <div class="form-group">
+                            <input class="form-control" type="text" placeholder="your name" data-bind='value:nameToAdd, valueUpdate:"afterkeydown", visible: flag'>
+                            <input class="form-control" type="text" placeholder="youremail@gmail.com" data-bind='value:emailToAdd, valueUpdate:"afterkeydown", visible: flag'>
+                            <textarea class="form-control" rows="3" data-bind='value:textToAdd, valueUpdate:"afterkeydown"'></textarea>
                         </div>
-                        <!-- /.input-group -->
-                    </div>
+                        <button type="submit" data-bind="enable: isValidForm(), visible:flag, click:addComment" class="btn btn-primary">Submit</button>
+                        <button  id="save" type="button" data-bind="enable: isValidForm(), visible:saveFlag, click:saveComment" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
 
-                  
+                <hr>
 
+                <div data-bind="with:comments">
+                  <div data-bind="foreach: comments">
+                      <div class="media">
+                          <a class="pull-left" href="#">
+                              <img class="media-object" src="http://placehold.it/64x64" alt="">
+                          </a>
+                          <div class="media-body">
+                              <h4 class="media-heading" data-bind="text: name">
+                                </h4>
+                              <small>BY <span data-bind="text: email"></span></small>
+                              <p data-bind="text: body"></p>
+                          </div>
+                      </div>
+                      <div class="btn-group">
+                          <button type="submit" class="btn btn-primary" data-bind="click:editComment">Edit</button>
+                          <a class="btn btn-primary" data-bind="click: removeComment">Delete</a>
+                      </div>
+                      <hr>
+                  </div>
                 </div>
 
             </div>
+
+        </div>
             <!-- /.row -->
 
             <hr>
 
-            <!-- Footer -->
-            <footer>
+            <!-- Footer -->        
+
+        </div>
+    </app>
+       <footer>
                 <div class="row">
                     <div class="col-lg-12">
                         <p>Copyright &copy; Your Website 2014</p>
@@ -190,30 +169,7 @@
                 </div>
                 <!-- /.row -->
             </footer>
-
-        </div>
-        <template id="home"></template>
-        <template id="user"></template>
-    </app>
-    
-    <script src="vendor/bower_components/component-router/build/component-router.js"></script>
-    <script type="text/javascript" src="./app/mainScript.js"></script>
+    <script type="text/javascript" data-main="app/main" src="app/require.js"></script>
     <script type="text/javascript" src="assets/js/vendor.min.js"></script>
-    <!-- <script type="text/javascript" src="app/knockout-amd-helpers-0.6.1.js"></script>
-     <script data-main="scripts/config" type="text/javascript" src="app/require.js"></script>
-    <script type="text/javascript" src="app/require.js"></script>
-    <script type="text/javascript" src="app/main.js"></script>
-    <script type="text/javascript" src="app/app.js"></script>
-    
-    <script type="text/javascript" src="app/knockout-history.js"></script>
-    
-    <script type="text/javascript" src="app/knockout-router.js"></script>
-    <script type="text/javascript" src="app/require-text-2.0.10.js"></script>
-    <script type="text/javascript" src="app/require-2.1.10.min.js"></script> -->
-    <!--<script type="text/javascript" src="./app/script.js"></script>-->
-<!--<script type="text/javascript" src="./app.bundle.js"></script> 
- -->
- <!--    <script type="text/javascript" src="./dist/af956956ec4df6aee306.js"></script> -->
-</body>
 
 </html>
